@@ -17,7 +17,7 @@ module.exports = testCase(
     _login.on('*::registrationFail', function(err) {
       throw err
     })
-    _profile.on('*::saveProfileSuccess', function() { callback() })
+    _profile.on('*::saveProfileSuccess', callback)
     _login.on('*::registrationSuccess', function() {
       _profile.emit('saveProfile', {email: this.email, profile: {fullname: "Fuh Bahr"}})
     })
@@ -35,7 +35,7 @@ module.exports = testCase(
     _profile.emit('viewProfile', this.email)
   }
 , tearDown: function (callback) {
-    db.remove('user-' + encodeURIComponent(this.email))
+    db.remove('user-' + encodeURIComponent(this.email), callback)
   }
 })
 
