@@ -12,10 +12,6 @@ exports.common = {
   loginManager: {
     hash: 'sha512',
     saltLength: 16
-  },
-  profiles: {
-    algorithm: 'aes256',
-    secret: '<INSERT SUPER-SECRET, LONG KEY HERE>'
   }
 };
 

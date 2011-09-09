@@ -13,7 +13,6 @@ module.exports = testCase(
       , _profile = new profile.Profile()
 
     this.email = 'profiletest@example.com'
-    this.profileID = profile.mailHash(this.email)
     this.password = 'password'
     _login.on('*::registrationFail', function(err) {
       throw err
@@ -36,12 +35,7 @@ module.exports = testCase(
     _profile.emit('viewProfile', this.email)
   }
 , tearDown: function (callback) {
-    var todo = 2
-    function cb() {
-      if (!--todo) callback()
-    }
-    db.remove('user-' + encodeURIComponent(this.email), cb)
-    db.remove('profile-' + this.profileID, cb)
+    db.remove('user-' + encodeURIComponent(this.email), callback)
   }
 })
 
